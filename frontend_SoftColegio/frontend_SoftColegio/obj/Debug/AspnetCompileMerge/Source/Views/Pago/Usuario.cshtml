@@ -1,0 +1,243 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title text-center" style="font-size:25px">PAGOS REALIZADOS</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        @*<div class="col-3">
+                                <div class="form-group">
+                                    <label for="idCursog">Nombre Alumno</label>
+                                    <input type="text" class="form-control" id="NombreALumno">
+                                </div>
+                            </div>*@
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="idCursog">Curso</label>
+                                <select class="form-control" name="widcurso" id="idCursog"></select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="fi">Fecha inicio</label>
+                                <input type="date" class="form-control" id="fi">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="ff">Fecha fin</label>
+                                <input type="date" class="form-control" id="ff">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success btn-rounded mb-3" id="btnBuscar">Buscar<i class="dripicons-search"></i></button>
+                            @*<a href="" onclick="fn_ActualizarDatos();" class="btn btn-success mb-3" data-toggle="tooltip" data-placement="top" data-html="true" title="" id="btnActualizar" data-original-title="Actualiza y busca la información.">
+                                    Buscar&nbsp;<i class="mdi mdi-autorenew"></i>
+                                </a>*@
+                        </div>
+                    </div>
+                    <!-- end nav-->
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="basic-datatable-preview">
+                            <table id="tblPago" class="table table-striped dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center">APELLIDO Y NOMBRES</th>
+                                        <th style="text-align:center">CURSO</th>
+                                        <th style="text-align:center">FECHA_PAGO</th>
+                                        <th style="text-align:center">MONTO</th>
+                                        <th style="text-align:center">NRO MENSUALIDAD</th>
+                                        <th style="text-align:center">AÑO</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/assets/js/moment.js"></script>
+    <script>
+        var GvalorIdCurso = 0;
+        $('#fi').val(moment().format("YYYY-MM-DD"));
+        $('#ff').val(moment().add(1, 'month').format("YYYY-MM-DD"));
+
+        var fechainicial = moment().format("YYYY-MM-DD");
+        var fechafinal = moment().add(1, 'month').format("YYYY-MM-DD");
+        var usuario = "";
+
+        function fn_listartabla() {
+            $('#tblPago').DataTable(
+                {
+
+                    responsive: "true",
+                    dom: 'Bfrtilp',
+                    buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            text: '<i class="fas fa-file-excel"></i> ',
+                            titleAttr: 'Exportar a Excel',
+                            className: 'btn btn-success'
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            text: '<i class="fas fa-file-pdf"></i> ',
+                            titleAttr: 'Exportar a PDF',
+                            className: 'btn btn-danger'
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fa fa-print"></i> ',
+                            titleAttr: 'Imprimir',
+                            className: 'btn btn-info'
+                        },
+                    ],
+
+                    "ajax": {
+                        "url": "/Pago/rptListarUsuarioPagos",
+                        "type": "POST",
+                        "datatype": "json",
+                        "data": {
+                            "wusuario": usuario
+                            , "wfechaini": fechainicial
+                            , "wfechafin": fechafinal
+                            , "widcurso": GvalorIdCurso
+                        }
+                    },
+                    "bFilter": false,
+                    //"bServerSide": true,
+                    "order": [[4, "asc"]],
+                    "bProcessing": true,
+                    "bDestroy": true,
+                    "language": {
+                        "info": "",
+                        "infoEmpty": "",
+                        //"searching": false,
+                        "infoFiltered": "",
+                        "emptyTable": "No se encontraron registros",
+                        "sZeroRecords": "No se encontraron registros.",
+                        "processing": "Cargando. Por favor espere...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "sLengthMenu": "Mostrando _MENU_ filas"
+                    },
+                    "columns": [
+                        { "sName": "Snombres", "mDataProp": "Snombres" },
+                        { "sName": "SnombreCurso", "mDataProp": "SnombreCurso" },
+                        { "sName": "Sfecharegistro", "mDataProp": "Sfecharegistro" },
+                        { "sName": "Dmonto", "mDataProp": "Dmonto" },
+                        { "sName": "Imes", "mDataProp": "Imes" },
+                        { "sName": "Ianio", "mDataProp": "Ianio" }
+                    ]//,
+                    //"aoColumnDefs":
+                    //    [
+                    //        {
+                    //            "mRender": function (data, type, row) {
+                    //                console.log(row);
+                    //                // var strHtml = "<button class='btn btn-info' onclick='fnVerDetalle(" + row.idpago + ", " + row.idcurso + ", " + row.idusuario + ")' >Ver detalle</button>";
+                    //                // return strHtml;
+                    //            },
+                    //            "sWidth": "5px",
+                    //            "sClass": "css-center",
+                    //            "bSort": false,
+                    //            "aTargets": [5]
+                    //        },
+                    //    ]
+                });
+        }
+
+        function fn_ListarCursoGeneral() {
+            var inivelvalor = parseInt(1); //$('#idNivelg option:selected').attr('value');
+            $('#idCursog').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/clase/ListarClaseGestion",
+                data: {
+                    "idgrado": parseInt(1),//slcgradog
+                    "idnivel": parseInt(1) //slcnivelg
+                },
+                success: function (data) {
+                    if (data.data === "") {
+                        alert("¡No hay datos, ¡intenta agregar algunos!");
+                    }
+                    $('#idCursog').append($("<option></option>")
+                        .attr("value", "0")
+                        .text("Listar todo"));
+                    $.each(data, function (index, value) {
+                        $('#idCursog').append($("<option></option>")
+                            .attr("value", value.idcurso)
+                            .text(value.Snombre));
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            fn_ListarCursoGeneral();
+            fn_listartabla();
+
+            //$('#tblPago').DataTable({
+            //        responsive: "true",
+            //        dom: 'Bfrtilp',
+            //        buttons: [
+            //            {
+            //                extend: 'excelHtml5',
+            //                text: '<i class="fas fa-file-excel"></i> ',
+            //                titleAttr: 'Exportar a Excel',
+            //                className: 'btn btn-success'
+            //            },
+            //            {
+            //                extend: 'pdfHtml5',
+            //                text: '<i class="fas fa-file-pdf"></i> ',
+            //                titleAttr: 'Exportar a PDF',
+            //                className: 'btn btn-danger'
+            //            },
+            //            {
+            //                extend: 'print',
+            //                text: '<i class="fa fa-print"></i> ',
+            //                titleAttr: 'Imprimir',
+            //                className: 'btn btn-info'
+            //            },
+            //        ]
+            //    });
+        });
+
+
+        $("#btnBuscar").click(function () {
+            GvalorIdCurso = $('#idCursog option:selected').attr('value');
+            fechainicial = $('#fi').val();
+            fechafinal = $('#ff').val();
+            //usuario = $('#NombreALumno').val();
+            fn_listartabla();
+        });
+
+    </script>
+}
+

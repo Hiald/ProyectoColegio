@@ -1,0 +1,175 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="col-12">
+                    @*col-lg-7*@
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="page-title" style="font-size:40px;display:inline-block;">CALIFICACIONES</h4>
+                            <img src="~/Content/img/calificacion.png" height="90" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        @*<div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label for="idNivelg">Nivel</label>
+                    <select class="form-control" id="idNivelg"></select>
+                </div>
+            </div>
+        </div>*@
+        @*<div class="col-md-6">
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label for="idGradog">Grado</label>
+                    <select class="form-control" id="idGradog"></select>
+                </div>
+            </div>*@
+        <div class="col-md-6" style="display:none;">
+            <div class="form-group mb-3">
+                <label for="idCursog">Curso</label>
+                <select class="form-control" id="idCursog"></select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p class="text-muted font-14">
+                <label for="idSemana">Semana</label>
+                <select class="form-control" id="idSemana">
+                    <option>Seleccionar</option>
+                    <option value="1">Semana 1</option>
+                    <option value="2">Semana 2</option>
+                    <option value="3">Semana 3</option>
+                    <option value="4">Semana 4</option>
+                    <option value="5">Semana 5</option>
+                    <option value="6">Semana 6</option>
+                    <option value="7">Semana 7</option>
+                    <option value="8">Semana 8</option>
+                    <option value="9">Semana 9</option>
+                    <option value="10">Semana 10</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="basic-datatable-preview">
+                            <table style="border-style:solid; border-color:black;" id="tblCalificacion" class="table table-striped dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>CURSO</th>
+                                        <th>NOTA</th>
+                                        <th>OBSERVACI&Oacute;N</th>
+                                        <th>SEMANA</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var isemana = 0;
+            fn_ListarCurso();
+            $(document).ready(function () {
+
+                $('#idSemana').on('change', function () {
+                    isemana = parseInt($('#idSemana option:selected').attr('value'));
+                    listarCalificacion(isemana);
+                });
+            });
+        });
+
+        function listarCalificacion(isemana) {
+            $('#tblCalificacion').DataTable
+                ({
+                    "ajax": {
+                        "url": "/Calificacion/ListarCalificacionGestion",
+                        "type": "POST",
+                        "datatype": "json",
+                        "data": {
+                            "tiponota": 2,
+                            "idnota": 0,
+                            "isemana": isemana,
+                        }
+                    },
+                    //"bServerSide": true,
+                    "bDestroy": true,
+                    "bProcessing": true,
+                    "language": {
+                        "info": "",
+                        "infoEmpty": "",
+                        "infoFiltered": "",
+                        "emptyTable": "No se encontraron registros",
+                        "sZeroRecords": "No se encontraron registros.",
+                        "processing": "Cargando. Por favor espere...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "sSearch": "Buscar:"
+                    },
+                    "columns": [
+                        { "data": "Snombrecurso" },
+                        { "data": "Inota" },
+                        { "data": "Sobservacion" },
+                        { "data": "isemana" }
+                    ]
+                });
+        }
+
+        function fn_ListarCurso() {
+            var slcnivelg = $('#idNivelg option:selected').attr('value');
+            var slcgradog = $('#idGradog option:selected').attr('value');
+
+            var dtipousuario = $('#hddtipousuario').val();
+            var idusuarioparam = $('#hddidusuario').val();
+            $('#idCursog').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/clase/ListarClaseGestion",
+                data: {
+                    "idgrado": parseInt(1), //slcgradog
+                    "idnivel": parseInt(1) //slcnivelg
+                },
+                success: function (data) {
+                    if (data.data === "") {
+                        alert("¡No hay categorias, intenta agregar una!");
+                    }
+                    $('#idCursog').append($("<option></option>")
+                        .attr("value", "0")
+                        .text("Seleccione una opción"));
+                    $.each(data, function (index, value) {
+                        $('#idCursog').append($("<option></option>")
+                            .attr("value", value.idcurso)
+                            .text(value.Snombre));
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+    </script>
+}
+

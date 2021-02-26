@@ -1,0 +1,147 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="col-12">
+                    @*col-lg-7*@
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="page-title" style="font-size:30px;display:inline-block;">HORARIO</h4>
+                            <img src="~/Content/img/horario.png" height="90" />
+                        </div>
+                    </div>
+                </div>
+                @*<h4 class="page-title" style="font-size:40px">HORARIO</h4>
+                    <img src="~/Content/img/horario.png" />*@
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- end nav-->
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="basic-datatable-preview">
+                            <table id="tablaHorario" border="1" class="table table-striped dt-responsive nowrap w-100">
+                                @*ViewBag.GrolUsuario == 3 &&  ViewBag.GidNivel == 1 && ViewBag.GidGrado == 5*@
+                                @if (ViewBag.GrolUsuario == 3)
+                                {
+
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:center">NRO</th>
+                                            <th style="text-align:center">HORARIO</th>
+                                            <th style="text-align:center">LUNES</th>
+                                            <th style="text-align:center">MIERCOLES</th>
+                                            <th style="text-align:center">VIERNES</th>
+                                        </tr>
+                                    </thead>
+                                    @*<tbody>
+                                        <tr>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                1
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                <p class="m-0 d-inline-block align-middle font-16">9:00 AM - 10:00 AM</p>
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">ARITMÉTICA</p>
+                                                <img class="" height="40" src="~/Content/img/cimg2.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top:solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">AJEDREZ</p>
+                                                <img class="" height="40" src="~/Content/img/cimg6.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top:solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">INGLÉS</p>
+                                                <img class="" height="40" src="~/Content/img/cimg1.png" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                2
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                <p class="m-0 d-inline-block align-middle font-16">10:15 AM - 11:15 AM</p>
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">INGLÉS</p>
+                                                <img class="" height="40" src="~/Content/img/cimg1.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">ÁLGEBRA</p>
+                                                <img class="" height="40" src="~/Content/img/cimg2.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">GRAMÁTICA</p>
+                                                <img class="" height="40" src="~/Content/img/cimg9.png" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                3
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                <p class="m-0 d-inline-block align-middle font-16">11:30 AM - 12:30 PM</p>
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">PERCENTIL ORTOGRÁFICO</p>
+                                                <img class="" height="40" src="~/Content/img/cimg9.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">QUÍMICA</p>
+                                                <img class="" height="40" src="~/Content/img/cimg5.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">GEOMETRÍA</p>
+                                                <img class="" height="40" src="~/Content/img/cimg2.png" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                4
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; border-top: solid; text-align:center;">
+                                                <p class="m-0 d-inline-block align-middle font-16">12:45 PM - 1:30 PM </p>
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">FÍSICA</p>
+                                                <img class="" height="40" src="~/Content/img/cimg3.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">PLAN LECTOR</p>
+                                                <img class="" height="40" src="~/Content/img/cimg9.png" />
+                                            </td>
+                                            <td style="border-style:solid;border-color:black; text-align:center; border-top: solid;">
+                                                <p class="m-0 d-inline-block align-middle font-16">EXPERIMENTOS</p>
+                                                <img class="" height="40" src="~/Content/img/cimg5.png" />
+                                            </td>
+                                        </tr>
+                                    </tbody>*@
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+        $('#tablaHorario').DataTable();
+        });
+
+    </script>
+}
+

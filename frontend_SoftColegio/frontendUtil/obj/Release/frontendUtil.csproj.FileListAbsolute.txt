@@ -1,0 +1,6 @@
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\frontend_SoftColegio\frontendUtil\bin\Release\frontendUtil.dll
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\frontend_SoftColegio\frontendUtil\bin\Release\frontendUtil.pdb
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\frontend_SoftColegio\frontendUtil\obj\Release\frontendUtil.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\frontend_SoftColegio\frontendUtil\obj\Release\frontendUtil.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\frontend_SoftColegio\frontendUtil\obj\Release\frontendUtil.dll
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\frontend_SoftColegio\frontendUtil\obj\Release\frontendUtil.pdb

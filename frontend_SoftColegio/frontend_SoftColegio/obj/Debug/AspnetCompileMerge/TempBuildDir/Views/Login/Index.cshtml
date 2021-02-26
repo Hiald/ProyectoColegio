@@ -1,0 +1,222 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Sistema Colegio | Colegio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Crivant" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="~/assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
+    <link href="~/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
+    <script>
+         var RutaPrincipal = "@Url.Content("~")";
+    </script>
+</head>
+
+<body class="authentication-bg pb-0" data-layout-config='{"darkMode":false}'>
+    <input type="hidden" id="data-ivalorsesion" value="@ViewBag.GIvalorSesion" />
+    <div class="auth-fluid">
+        <!--Auth fluid left content -->
+        <div class="auth-fluid-form-box">
+            <div class="align-items-center d-flex h-100">
+                <div class="card-body text-center">
+
+                    @*<img src="~/Content/img/imagenlogin.jpg" height="200" />*@
+                    <img src="~/Content/img/sancarloseduca.png" height="200" />
+                    @*<img src="~/assets/PERFIL_PL.png" height="200" />*@
+
+                    @*Logo*@
+                    <div class="auth-brand text-center text-lg-left">
+                        @*<a href="index.html" class="logo-dark">
+                                <span><img src="assets/images/logo-dark.png" alt="" height="18"></span>
+                            </a>*@
+                        @*<a href="index.html" class="logo-light">
+                                <span><img src="assets/images/logo.png" alt="" height="18"></span>
+                            </a>*@
+                    </div>
+                    <!-- title-->
+                    <h4 class="mt-0">Iniciar sesión</h4>
+                    <p class="text-muted mb-4">Ingrese su usuario y contraseña para acceder a la cuenta.</p>
+
+                    <!-- form -->
+                    <form id="frm2">
+                        <div class="form-group">
+                            <label for="emailaddress">Dirección de correo electrónico</label>
+                            <input class="form-control" type="text" id="emailaddress" required="" placeholder="Introduce tu correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            @*<a href="pages-recoverpw-2.html" class="text-muted float-right"><small>Olvidaste tu contraseña?</small></a>*@
+                            <label for="password">Contraseña</label>
+                            <input class="form-control" type="password" required="" id="password" placeholder="Ingresa tu contraseña">
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkbox-signin">
+                                @*<label class="custom-control-label" for="checkbox-signin">Recuerdame</label>*@
+                            </div>
+                        </div>
+                        <div class="form-group mb-0 text-center">
+                            <button id="btnLogin" class="btn btn-primary btn-block" type="button"><i class="mdi mdi-login"></i> Iniciar Sesión</button>
+                        </div>
+                        <!-- social-->
+                        <div class="text-center mt-4">
+                            <!-- <p class="text-muted font-16">Sign in with</p>
+                            <ul class="social-list list-inline mt-3">
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github-circle"></i></a>
+                                </li>
+                            </ul> -->
+                        </div>
+                    </form>
+                    <!-- end form-->
+                    <!-- Footer-->
+                    <footer class="footer footer-alt">
+                        <!-- <p class="text-muted">Don't have an account? <a href="pages-register-2.html" class="text-muted ml-1"><b>Iniciar sesión</b></a></p> -->
+                    </footer>
+
+                </div>
+                <!-- end .card-body -->
+            </div>
+        </div>
+        <div class="auth-fluid-right text-center">
+        </div>
+    </div>
+    <script src="~/assets/js/vendor.min.js"></script>
+    <script src="~/assets/js/app.min.js"></script>
+    <input type="hidden" id="idvalorerror" value="@ViewBag.GIvalorError" />
+
+</body>
+</html>
+
+<script>
+    $('#frm2').submit(false);
+
+    function NotificacionInfoDerecha(mensaje) {
+        $.NotificationApp.send("Aviso!", mensaje, "top-right", "rgba(0,0,0,0.2)", "info")
+    }
+
+    function NotificacionAvisoIzquierda(mensaje) {
+        $.NotificationApp.send("AVISO!", mensaje, "top-left", "rgba(0,0,0,0.2)", "warning")
+    }
+
+    function NotificacionAvisoIzquierdaAbajo(mensaje) {
+        $.NotificationApp.send("AVISO!", mensaje, "bottom-left", "rgba(0,0,0,0.2)", "warning")
+    }
+
+    function NotificacionErrorIzquierda(mensaje) {
+        $.NotificationApp.send("ERROR!", mensaje, "top-left", "rgba(0,0,0,0.2)", "error")
+    }
+
+    function NotificacionSuccessIzquierda(mensaje) {
+        $.NotificationApp.send("DATOS CORRECTOS!", mensaje, "top-left", "rgba(0,0,0,0.2)", "success")
+    }
+
+    var Givalorsesion = $('#data-ivalorsesion').val();
+    if (Givalorsesion == 1) {
+        NotificacionAvisoIzquierdaAbajo("La sesión ha terminado, por favor ingrese nuevamente sus credenciales.")
+    }
+
+    $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+            var ipUsuario = $('#emailaddress').val();
+            var ipClave = $('#password').val();
+            var mensaje = "";
+            if (ipUsuario.trim() == "") {
+                NotificacionAvisoIzquierda("INGRESAR SU CORREO");
+                return;
+            }
+            if (ipClave.trim() == "") {
+                NotificacionAvisoIzquierda("INGRESE SU CLAVE");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: RutaPrincipal + 'Login/Loginusuario',
+                data: {
+                    "wusuario": ipUsuario,
+                    "wclave": ipClave
+                },
+                async: false,
+                success: function (msg) {
+                    if (msg.iResultado === -3) {
+                        NotificacionErrorIzquierda("USUARIO O CLAVE INCORRECTO");
+                        return;
+                    } else {
+
+                        window.location.href = RutaPrincipal + "Home/Index";
+
+                    }
+                },
+                error: function (msg) {
+
+                    //location.reload();
+                },
+                complete: function (data) {
+                    // si acabo de completar
+                }
+            });
+        }
+    });
+
+    $("#btnLogin").click(function () {
+        var ipUsuario = $('#emailaddress').val();
+        var ipClave = $('#password').val();
+        var mensaje = "";
+        if (ipUsuario.trim() == "") {
+            NotificacionAvisoIzquierda("INGRESAR SU CORREO");
+            return;
+        }
+        if (ipClave.trim() == "") {
+            NotificacionAvisoIzquierda("INGRESE SU CLAVE");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: RutaPrincipal + 'Login/Loginusuario',
+            data: {
+                "wusuario": ipUsuario,
+                "wclave": ipClave
+            },
+            async: false,
+            success: function (msg) {
+                if (msg.iResultado === -3) {
+                    NotificacionErrorIzquierda("USUARIO O CLAVE INCORRECTO");
+                    return;
+                } else {
+
+                    window.location.href = RutaPrincipal + "Home/Index";
+
+                }
+            },
+            error: function (msg) {
+
+                //location.reload();
+            },
+            complete: function (data) {
+                // si acabo de completar
+            }
+        });
+
+    });
+</script>

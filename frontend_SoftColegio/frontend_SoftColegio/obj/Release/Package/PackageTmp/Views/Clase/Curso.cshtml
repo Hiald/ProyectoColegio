@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title" style="font-size:40px">CURSOS ASIGNADOS</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var @item in ViewBag.Lista)
+        {
+            <div class="col-lg-4">
+                <div class="card ribbon-box">
+                    <div class="card-body">
+                        <div class="ribbon ribbon-success float-left"><i class="mdi mdi-school-outline"></i>@item.Snombre</div>
+                        @*<img class="float-right mt-0" src="@item.SimagenRuta" alt="curso" height="75" />*@
+                        <img class="float-right mt-0" src="~/Content/img/horario.png" alt="curso" height="75" />
+                        <div class="ribbon-content">
+                            <a href="/Clase/Clase?idcurso=@item.idcurso&nombreCurso=@item.Snombre" class="btn btn-primary">
+                                <i class="mdi mdi-play-outline"></i>Ir a la clase
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var idCurso = 0;
+    </script>
+}
+
+

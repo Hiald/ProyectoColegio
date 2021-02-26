@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title text-center" style="font-size:25px">PAGOS REALIZADOS</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- end nav-->
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="basic-datatable-preview">
+                            <table id="tblPago" class="table table-striped dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center">NRO</th>
+                                        <th style="text-align:center">NIVEL</th>
+                                        <th style="text-align:center">GRADO</th>
+                                        <th style="text-align:center">CURSO</th>
+                                        <th style="text-align:center">NRO DE OPERACIÓN</th>
+                                        <th style="text-align:center">MES DE PAGO</th>
+                                        <th style="text-align:center">TIPO DE PAGO</th>
+                                        <th style="text-align:center">TIPO DE MONEDA</th>
+                                        <th style="text-align:center">MONTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('#tblPago').DataTable({
+                responsive: "true",
+                dom: 'Bfrtilp',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fas fa-file-excel"></i> ',
+                        titleAttr: 'Exportar a Excel',
+                        className: 'btn btn-success'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fas fa-file-pdf"></i> ',
+                        titleAttr: 'Exportar a PDF',
+                        className: 'btn btn-danger'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i> ',
+                        titleAttr: 'Imprimir',
+                        className: 'btn btn-info'
+                    },
+                ]
+            });
+        });
+
+    </script>
+}
+

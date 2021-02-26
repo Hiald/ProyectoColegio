@@ -1,0 +1,415 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Contenido</a></li>
+                        <li class="breadcrumb-item active">Gestion Asignación</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">MÓDULO ASIGNACIÓN</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-muted font-14">
+                        <button type="button" class="btn btn-success btn-rounded mb-3" data-toggle="modal" data-target="#modalClase"><i class="mdi mdi-plus"></i>Agregar Asignación</button>
+                    </p>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="basic-datatable-preview">
+                            <table id="tblAsignacion" class="table dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Nivel</th>
+                                        <th>Grado</th>
+                                        <th>Curso</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL -->
+    <div id="modalClase" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-success">
+                    <h4 class="modal-title" id="dark-header-modalLabel">ASIGNACIÓN</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="idUsuario">Usuario</label>
+                                <select class="form-control" id="idUsuario"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="idNivel">Nivel</label>
+                                <select class="form-control" id="idNivel"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="idGrado">Grado</label>
+                                <select class="form-control" id="idGrado"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="idCurso">Curso</label>
+                                <select class="form-control" id="idCurso"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-rounded mb-3" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success btn-rounded mb-3" id="btnGuardar"><i class="mdi mdi-plus"></i>Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL AGREGAR ARCHIVO-->
+    <div id="modalArchivo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-dark">
+                    <h4 class="modal-title" id="dark-header-modalLabel">Archivo</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txtNombreArc">Nombre</label>
+                                <input type="text" id="txtNombreArc" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txttipoarchivo">Tipo de archivo</label>
+                                <select class="form-control" id="txttipoarchivo">
+                                    <option>Seleccionar</option>
+                                    <option value="1">Tarea (Calificable)</option>
+                                    <option value="2">Teoría</option>
+                                    <option value="3">Texto</option>
+                                    <option value="4">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <label for="txtdescripcion">Descripción</label>
+                                <textarea class="form-control" id="txtdescripcion" placeholder="Descripción..." rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txtenlace">Enlace del archivo</label>
+                                <input type="text" id="txtenlace" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txtvideo">Enlace del Video (opcional)</label>
+                                <input type="text" id="txtvideo" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txtfechaini">Fecha Inicio</label>
+                                <input type="date" id="txtfechaini" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txtfechafin">Fecha Fin</label>
+                                <input type="date" id="txtfechafin" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-dark" id="btnGuardarArchivo">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-eliminar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <div class="text-center">
+                    <i class="dripicons-wrong h1 text-danger"></i>
+                    <h4 class="mt-2">Seguro de Eliminar?</h4>
+                    <button type="button" onclick="fn_ConfimarEliminar()" id="mdEliminar" class="btn btn-success my-2" data-dismiss="modal">Si</button>
+                    <button type="button" id="" class="btn btn-light my-2" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function fn_ListarNivel() {
+
+            $('#idNivel').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/curso/ListarNivel",
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("¡No hay niveles, intenta agregar algunos!");
+                    }
+                    $('#idNivel').append($("<option></option>")
+                        .attr("value", "")
+                        .text("Seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#idNivel').append($("<option></option>")
+                            .attr("value", value.idnivel)
+                            .text(value.SnombreNivel));
+                    });
+
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+
+        function fn_ListarUsuario() {
+
+            $('#idUsuario').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/login/ListarUsuarioGestion",
+                data: {
+                    "usuario": '',
+                    "tipousuario": 2
+                },
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("¡No hay usuarios, intenta agregar una en el módulo usuario!");
+                    }
+                    $('#idUsuario').append($("<option></option>")
+                        .attr("value", "")
+                        .text("Seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#idUsuario').append($("<option></option>")
+                            .attr("value", value.idusuario)
+                            .text(value.Snombres + " " + value.SApellidoPaterno + " " + value.SApellidoMaterno));
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+
+        function fn_listarGrado() {
+            var slcnivel = $('#idNivel option:selected').attr('value');
+            $('#idGrado').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/Curso/ListarGrado",
+                data: {
+                    "widnivel": parseInt(slcnivel)
+                },
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("¡No hay categorias, intenta agregar una!");
+                    }
+                    $('#idGrado').append($("<option></option>")
+                        .attr("value", "")
+                        .text("Seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#idGrado').append($("<option></option>")
+                            .attr("value", value.idgrado)
+                            .text(value.SnombreGrado));
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function fn_ListarCurso() {
+            var slcnivel = $('#idNivel option:selected').attr('value');
+            var slcgrado = $('#idGrado option:selected').attr('value');
+            $('#idCurso').html("");
+            $.ajax({
+                type: "POST",
+                url: "/clase/ListarClaseGestion",
+                data: {
+                    "idgrado": parseInt(slcgrado),
+                    "idnivel": parseInt(slcnivel)
+                },
+                success: function (data) {
+                    if (data === "") {
+                        alert("¡No hay categorias, intenta agregar una!");
+                    }
+
+                    $('#idCurso').append($("<option></option>")
+                        .attr("value", "")
+                        .text("Seleccione una opción"));
+                    $.each(data, function (index, value) {
+                        $('#idCurso').append($("<option></option>")
+                            .attr("value", value.idcurso)
+                            .text(value.Snombre));
+                    });
+                    
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+
+        $(document).ready(function () {
+            fn_ListarNivel();
+            fn_ListarUsuario();
+
+            $('#tblAsignacion').DataTable(
+                {
+                    "ajax": {
+                        "url": "/Curso/ListarCursoGestion",
+                        "type": "POST",
+                        "datatype": "json",
+                        "data": {
+                            "valoritipousuario": 1,
+                            "widusuario": 0,
+                            "idnivel": 0,
+                            "idgrado": 0,
+                            "idcurso": 0
+                        }
+                    },
+                    //"bServerSide": true,
+                    "bProcessing": true,
+                    "language": {
+                        "info": "",
+                        "infoEmpty": "",
+                        "infoFiltered": "",
+                        "emptyTable": "No se encontraron registros",
+                        "sZeroRecords": "No se encontraron registros.",
+                        "processing": "Cargando. Por favor espere...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "sSearch": "Buscar:"
+                    },
+                    "columns": [
+
+                        { "data": "Snombres" },
+                        { "data": "Sapellidos" },
+                        { "data": "SnombreNivel" },
+                        { "data": "SnombreGrado" },
+                        { "data": "SnombreCurso" }
+                    ],
+                    "aoColumnDefs":
+                        [
+                        ]
+                });
+
+            $('#idNivel').on('change', function () {
+                fn_listarGrado();
+            });
+
+            $('#idGrado').on('change', function () {
+                fn_ListarCurso();
+            });
+
+        });
+
+        $("#btnCerrar").click(function () {
+            $('#idGrado').find('option').remove();
+            $('#idCurso').find('option').remove();
+            $("#idNivel").prop('selectedIndex', 0);
+            $("#idUsuario").prop('selectedIndex', 0);
+            fn_ListarUsuario();
+
+        });
+
+        $("#btnGuardar").click(function () {
+            var idUsuario = $('#idUsuario option:selected').attr('value');
+            var idNivel = $('#idNivel option:selected').attr('value');
+            var idGrado = $('#idGrado option:selected').attr('value');
+            var idCurso = $('#idCurso option:selected').attr('value');
+
+            if (idUsuario.trim() == 0) {
+                NotificacionAvisoDerecha("SELECCIONE UN USUARIO");
+                return;
+            }
+            if (idNivel.trim() == 0) {
+                NotificacionAvisoDerecha("SELECCIONE UN NIVEL");
+                return;
+            }
+            if (idGrado.trim() == 0) {
+                NotificacionAvisoDerecha("SELECCIONE UN GRADO");
+                return;
+            }
+            if (idCurso == undefined) {
+                NotificacionAvisoDerecha("SELECCIONE UN CURSO");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: '/Curso/InsertarCursoDocente',
+                data: {
+                    "idusuario": idUsuario,
+                    "idnivel": idNivel,
+                    "idgrado": idGrado,
+                    "idcurso": idCurso
+                },
+                async: false,
+                success: function (msg) {
+                    NotificacionSuccessDerecha("DATOS INGRESADOS CORRECTAMENTE");
+                    $('#modalClase').modal("hide");
+                    var table = $('#tblAsignacion').DataTable();
+                    table.ajax.reload();
+                },
+                error: function (msg) {
+                    console.log(msg);
+                    //location.reload();
+                },
+                complete: function (data) {
+                    // si acabo de completar
+                }
+            });
+        });
+
+    </script>
+}
+
+

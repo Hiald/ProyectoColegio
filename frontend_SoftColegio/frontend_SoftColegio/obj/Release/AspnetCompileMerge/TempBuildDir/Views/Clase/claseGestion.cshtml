@@ -1,0 +1,763 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Contenido</a></li>
+                        <li class="breadcrumb-item active">Gestion clases</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">MÓDULO CLASE</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-muted font-14">
+                        <button type="button" class="btn btn-success btn-rounded mb-3" data-toggle="modal" data-target="#modalClase">
+                            <i class="mdi mdi-plus"></i>Agregar Clase
+                        </button>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="idNivelg">Nivel</label>
+                                <select class="form-control" id="idNivelg"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="idGradog">Grado</label>
+                                <select class="form-control" id="idGradog"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="idCursog">Curso</label>
+                                <select class="form-control" id="idCursog"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="basic-datatable-preview">
+                            <table id="tblClase" class="table dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Clase</th>
+                                        <th>Nombre Curso</th>
+                                        <th>Descripción</th>
+                                        <th>Ruta Enlace</th>
+                                        <th>Ruta Video</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL -->
+    <div id="modalClase" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-success">
+                    <h4 class="modal-title" id="dark-header-modalLabel">CLASE</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="idNivel">Nivel</label>
+                                <select class="form-control" id="idNivel"></select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="idGrado">Grado</label>
+                                <select class="form-control" id="idGrado"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="idCurso">Curso</label>
+                                <select class="form-control" id="idCurso"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="simpleinput">Nombre de la clase</label>
+                                <input type="text" id="txtNombre" class="form-control" placeholder="Clase">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="idSemana">Número de semana</label>
+                                <select class="form-control" id="idSemana">
+                                    <option value="0">Seleccionar</option>
+                                    <option value="1">Semana 1</option>
+                                    <option value="2">Semana 2</option>
+                                    <option value="3">Semana 3</option>
+                                    <option value="4">Semana 4</option>
+                                    <option value="5">Semana 5</option>
+                                    <option value="6">Semana 6</option>
+                                    <option value="7">Semana 7</option>
+                                    <option value="8">Semana 8</option>
+                                    <option value="9">Semana 9</option>
+                                    <option value="10">Semana 10</option>
+                                    <option value="11">Semana 11</option>
+                                    <option value="12">Semana 12</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <label for="example-textarea">Descripcion clase</label>
+                                <textarea class="form-control" id="txtDescripcion" placeholder="Descripción..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="simpleinput">Ruta enlace</label>
+                                <input type="text" id="txtRutaEnlace" class="form-control" placeholder="Ruta enlace...">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="simpleinput">Ruta video</label>
+                                <input type="text" id="txtRutaVideo" class="form-control" placeholder="Ruta video...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-rounded mb-3" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success btn-rounded mb-3" id="btnGuardar"><i class="mdi mdi-plus"></i>Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL AGREGAR ARCHIVO-->
+    <div id="modalArchivo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dark-header-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-success">
+                    <h4 class="modal-title" id="dark-header-modalLabel">Tarea</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                @using (Html.BeginForm("AgregarArchivo", "archivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="modal-body">
+                        <div class="row">
+                            <input type="hidden" name="idgrado" value="" id="hddidclase" />
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="txtNombreArc">Nombre</label>
+                                    <input type="text" name="nombre" id="txtNombreArc" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="txttipoarchivo">Tipo de Tarea</label>
+                                    <select class="form-control" name="itipoarchivo" id="txttipoarchivo">
+                                        <option value="0">Seleccionar</option>
+                                        <option value="1">Tarea (Calificable)</option>
+                                        <option value="2">Teoría</option>
+                                        <option value="3">Texto</option>
+                                        <option value="4">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label for="txtdescripcion">Descripción</label>
+                                    <textarea class="form-control" name="descripcion" id="txtdescripcion" placeholder="Descripción..." rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="txtenlace">Enlace de la tarea</label>
+                                    <input type="text" name="rutaenlace" id="txtenlace" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="txtvideo">Archivo de la tarea</label>
+                                    <input type="file" id="txtvideo" name="FRutaArchivo" class="form-control"
+                                           accept="application/msword, application/vnd.ms-powerpoint, text/plain
+                                                , application/pdf, image/*, application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                                 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="txtfechaini">Fecha Inicio</label>
+                                    <input type="date" name="fechaini" id="txtfechaini" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="txtfechafin">Fecha Fin</label>
+                                    <input type="date" name="fechafin" id="txtfechafin" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light btn-rounded mb-3" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-success btn-rounded mb-3"><i class="mdi mdi-plus"></i>Guardar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modalEliminarClase" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <input type="hidden" value="" data-idclaseEliminar="" id="hddclaseEliminar" />
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <div class="text-center">
+                    <i class="dripicons-wrong h1 text-danger"></i>
+                    <h4 class="mt-2">Seguro de Eliminar?</h4>
+                    <button type="button" onclick="fn_ConfimarEliminar()" id="mdEliminar" class="btn btn-success my-2" data-dismiss="modal">Si</button>
+                    <button type="button" id="" class="btn btn-light my-2" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalSuccess" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content modal-filled bg-success">
+            <div class="modal-body p-4">
+                <div class="text-center">
+                    <i class="dripicons-checkmark h1"></i>
+                    <h4 class="mt-2">DATOS AGREGADOS CORRECTAMENTE!</h4>
+                    <button type="button" class="btn btn-light my-2" data-dismiss="modal">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="@ViewBag.GIDUsuario" id="hddidusuario" />
+<input type="hidden" value="@ViewBag.GrolUsuario" id="hddtipousuario" />
+@section scripts{
+    <script src="~/assets/js/moment.js"></script>
+    <script>
+        var GvalorIdCurso = 0;
+        $('#txtfechaini').val(moment().format("YYYY-MM-DD"));
+        $('#txtfechafin').val(moment().format("YYYY-MM-DD"));
+
+        function fn_ListarNivelAgregar() {
+            $('#idNivel').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/curso/ListarNivel",
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("¡No hay niveles, intenta agregar algunos!");
+                    }
+
+                    $('#idNivel').append($("<option></option>")
+                        .attr("value", "")
+                        .text("Seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#idNivel').append($("<option></option>")
+                            .attr("value", value.idnivel)
+                            .text(value.SnombreNivel));
+                    });
+
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+
+        function fn_ListarGradoAgregar() {
+            var dtipousuario = $('#hddtipousuario').val();
+            var idusuarioparam = $('#hddidusuario').val();
+            var inivelvalor = $('#idNivel option:selected').attr('value');
+            $('#idGrado').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/curso/ListarGrado",
+                data: {
+                    "widnivel": parseInt(inivelvalor),
+                },
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("¡No hay grados, intenta agregar algunos!");
+                    }
+                    $('#idGrado').append($("<option></option>")
+                        .attr("value", "0")
+                        .text("Seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#idGrado').append($("<option></option>")
+                            .attr("value", value.idgrado)
+                            .text(value.SnombreGrado));
+                    });
+
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+
+        function fn_ListarCursoAgregar() {
+            var slcnivelg = $('#idNivel option:selected').attr('value');
+            var slcgradog = $('#idGrado option:selected').attr('value');
+
+            var dtipousuario = $('#hddtipousuario').val();
+            var idusuarioparam = $('#hddidusuario').val();
+            if (dtipousuario == 1) {
+                idusuarioparam = 0;
+
+                $('#idCurso').find('option').remove();
+                $.ajax({
+                    type: "POST",
+                    url: "/clase/ListarClaseGestion",
+                    data: {
+                        "idgrado": parseInt(slcgradog),
+                        "idnivel": parseInt(slcnivelg)
+                    },
+                    success: function (data) {
+                        if (data.data === "") {
+                            alert("¡No hay datos, ¡intenta agregar algunos!");
+                        }
+                        $('#idCurso').append($("<option></option>")
+                            .attr("value", "0")
+                            .text("Seleccione una opción"));
+                        $.each(data, function (index, value) {
+                            $('#idCurso').append($("<option></option>")
+                                .attr("value", value.idcurso)
+                                .text(value.Snombre));
+                        });
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+
+            } else {
+                var inivelvalor = $('#idNivel option:selected').attr('value');
+                var igradovalor = $('#idGrado option:selected').attr('value');
+                $('#idCurso').find('option').remove();
+                $.ajax({
+                    type: "POST",
+                    url: "/curso/ListarCursoGestion",
+                    data: {
+                        "valoritipousuario": 4,
+                        "widusuario": idusuarioparam,
+                        "idnivel": inivelvalor,
+                        "idgrado": igradovalor,
+                        "idcurso": 0
+                    },
+                    success: function (data) {
+                        if (data.aaData === "") {
+                            alert("¡No hay datos, ¡intenta agregar algunos!");
+                        }
+                        $('#idCurso').append($("<option></option>")
+                            .attr("value", "0")
+                            .text("Seleccione una opción"));
+                        $.each(data.aaData, function (index, value) {
+                            $('#idCurso').append($("<option></option>")
+                                .attr("value", value.idcurso)
+                                .text(value.SnombreCurso));
+                        });
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+
+        }
+
+        function fn_ListarNivel() {
+
+            $('#idNivelg').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/curso/ListarNivel",
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("¡No hay niveles, intenta agregar algunos!");
+                    }
+
+                    $('#idNivelg').append($("<option></option>")
+                        .attr("value", "")
+                        .text("Seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#idNivelg').append($("<option></option>")
+                            .attr("value", value.idnivel)
+                            .text(value.SnombreNivel));
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+
+        function fn_ListarGrado() {
+            var dtipousuario = $('#hddtipousuario').val();
+            var idusuarioparam = $('#hddidusuario').val();
+            var inivelvalor = $('#idNivelg option:selected').attr('value');
+
+            $('#idGradog').find('option').remove();
+            $.ajax({
+                type: "POST",
+                url: "/curso/ListarGrado",
+                data: {
+                    "widnivel": parseInt(inivelvalor),
+                },
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("¡No hay grados, intenta agregar algunos!");
+                    }
+                    $('#idGradog').append($("<option></option>")
+                        .attr("value", "")
+                        .text("Seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#idGradog').append($("<option></option>")
+                            .attr("value", value.idgrado)
+                            .text(value.SnombreGrado));
+                    });
+
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+
+        function fn_ListarCurso() {
+            var slcnivelg = $('#idNivelg option:selected').attr('value');
+            var slcgradog = $('#idGradog option:selected').attr('value');
+
+            var dtipousuario = $('#hddtipousuario').val();
+            var idusuarioparam = $('#hddidusuario').val();
+            if (dtipousuario == 1) {
+                idusuarioparam = 0;
+
+                $('#idCursog').find('option').remove();
+                $.ajax({
+                    type: "POST",
+                    url: "/clase/ListarClaseGestion",
+                    data: {
+                        "idgrado": parseInt(slcgradog),
+                        "idnivel": parseInt(slcnivelg)
+                    },
+                    success: function (data) {
+                        if (data.data === "") {
+                            alert("¡No hay datos, ¡intenta agregar algunos!");
+                        }
+                        $('#idCursog').append($("<option></option>")
+                            .attr("value", "0")
+                            .text("Seleccione una opción"));
+                        $.each(data, function (index, value) {
+                            $('#idCursog').append($("<option></option>")
+                                .attr("value", value.idcurso)
+                                .text(value.Snombre));
+                        });
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+
+            } else {
+                var inivelvalor = $('#idNivelg option:selected').attr('value');
+                var igradovalor = $('#idGradog option:selected').attr('value');
+                $('#idCursog').find('option').remove();
+                $.ajax({
+                    type: "POST",
+                    url: "/curso/ListarCursoGestion",
+                    data: {
+                        "valoritipousuario": 4,
+                        "widusuario": idusuarioparam,
+                        "idnivel": inivelvalor,
+                        "idgrado": igradovalor,
+                        "idcurso": 0
+                    },
+                    success: function (data) {
+                        if (data.aaData === "") {
+                            alert("¡No hay datos, intenta agregar una!");
+                        }
+                        $('#idCursog').append($("<option></option>")
+                            .attr("value", "")
+                            .text("Seleccione una opción"));
+                        $.each(data.aaData, function (index, value) {
+                            $('#idCursog').append($("<option></option>")
+                                .attr("value", value.idcurso)
+                                .text(value.SnombreCurso));
+                        });
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+        }
+
+        function fn_listartabla(param_valor) {
+            $('#tblClase').DataTable(
+                {
+                    "ajax": {
+                        "url": "/Clase/ListarClaseGeneral",
+                        "type": "POST",
+                        "datatype": "json",
+                        "data": { "idcurso": param_valor }
+                    },
+                    //"bServerSide": true,
+                    "bProcessing": true,
+                    "bDestroy": true,
+                    "language": {
+                        "info": "",
+                        "infoEmpty": "",
+                        "infoFiltered": "",
+                        "emptyTable": "No se encontraron registros",
+                        "sZeroRecords": "No se encontraron registros.",
+                        "processing": "Cargando. Por favor espere...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "sSearch": "Buscar:"
+                    },
+                    "columns": [
+
+                        { "data": "Snombre" },
+                        { "data": "Snombrecurso" },
+                        { "data": "Sdescripcion" },
+                        { "data": "Srutaenlace" },
+                        { "data": "SrutaVideo" },
+                        { "data": "SimagenRuta" }
+                    ],
+                    "aoColumnDefs":
+                        [
+                            {
+                                "mRender": function (data, type, row) {
+                                    var strHtml = "<button class='btn btn-danger' onclick='fn_Eliminar()' data-cat=\"" + row.idclase + "|" + "\" id='AcessEliminar' >Eliminar</button>";
+
+                                    return strHtml;
+                                },
+                                "sWidth": "5px",
+                                "sClass": "css-center",
+                                "bSort": false,
+                                "aTargets": [5]
+                            },
+                            {
+                                "mRender": function (data, type, row) {
+                                    var strHtml = "<button class='btn btn-info' onclick='fnAgregarClase(" + row.idclase + ")' data-delet=\"" + row.idclase + "\" id='AccessEliminar' >Agregar tarea</button>";
+                                    return strHtml;
+                                },
+                                "sWidth": "5px",
+                                "sClass": "css-center",
+                                "bSort": false,
+                                "aTargets": [6]
+                            }
+                        ]
+                });
+        }
+
+        $(document).ready(function () {
+            fn_ListarNivel();
+            fn_ListarNivelAgregar();
+
+            $('#idNivel').on('change', function () {
+                if ($('#idNivel option:selected').attr('value') == "") {
+                    $('#idGrado').find('option').remove();
+                    $('#idCurso').find('option').remove();
+                    return;
+                }
+                $('#idGrado').find('option').remove();
+                $('#idCurso').find('option').remove();
+                fn_ListarGradoAgregar();
+            });
+
+            $('#idGrado').on('change', function () {
+                fn_ListarCursoAgregar();
+            });
+
+            $('#idNivelg').on('change', function () {
+                if ($('#idNivelg option:selected').attr('value') == "") {
+                    $('#idGradog').find('option').remove();
+                    $('#idCursog').find('option').remove();
+                    return;
+                }
+                $('#idGradog').find('option').remove();
+                $('#idCursog').find('option').remove();
+                fn_ListarGrado();
+            });
+
+            $('#idGradog').on('change', function () {
+                fn_ListarCurso();
+            });
+
+            $('#idCursog').on('change', function () {
+                GvalorIdCurso = parseInt($('#idCursog option:selected').attr('value'));
+                fn_listartabla(GvalorIdCurso);
+            });
+           
+        });
+
+        function fnEditar() {
+            $('body').on("click", "#AccessEdita", function (e) {
+                e.preventDefault();
+                var id_categoria = $(this).attr("data-edit");
+                alert("Valor : " + id_categoria);
+                //$('#txNombreEditar').val(ArrayCategoria[1]);
+            });
+        }
+        var idClase = 0;
+
+        function fnAgregarClase(idclasem) {
+            idClase = parseInt(idclasem);
+            $('#hddidclase').val(idClase);
+            $("#modalArchivo").modal("show");
+        }
+
+        function fn_Eliminar() {
+            $('body').on("click", "#AcessEliminar", function () {
+                var id_clase = $(this).attr("data-cat");
+                var ArrayClase = id_clase.split("|");
+                //alert(ArrayClase[0]);
+                $('#hddclaseEliminar').attr("data-idclaseEliminar", ArrayClase[0]);
+                $('#modalEliminarClase').modal("show");
+            });
+        }
+
+        function fn_ConfimarEliminar() {
+            var idclase = $('#hddclaseEliminar').attr("data-idclaseEliminar");
+            $.ajax({
+                type: "POST",
+                url: "/Clase/EliminarClaseGestion",
+                //contentType: "application/json; charset=utf-8",
+                data: {
+                    "widclase": idclase
+                },
+                //dataType: "json",
+                //async: true,
+                success: function (data) {
+                    $('#modalEliminarClase').modal("hide");
+                    GvalorIdCurso = parseInt($('#idCursog option:selected').attr('value'));
+                    fn_listartabla(GvalorIdCurso);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+            //$.ajax({
+            //    type: "POST",
+            //    url: "Clase/EliminarClaseGestion",
+            //    data: {
+            //        "widclase": idclase
+            //    },
+            //    success: function (data) {
+            //        $('#modalEliminarClase').modal("hide");
+            //        var table = $('#tblClase').DataTable();
+            //        table.ajax.reload();
+
+            //    },
+            //    error: function (data) {
+            //        console.log(data);
+            //    }
+            //});
+        }
+
+        $("#btnGuardar").click(function () {
+            var slcCurso = $('#idCurso option:selected').attr('value');
+            var slcCategoria = $('#idCategoria option:selected').attr('value');
+            var txtNombre = $('#txtNombre').val();
+            var txtDescripcion = $('#txtDescripcion').val();
+            var txtRutaEnlace = $('#txtRutaEnlace').val();
+            var txtRutaVideo = $('#txtRutaVideo').val();
+            var txtRutaImagen = $('#txtRutaImagen').val();
+            var slcSemana = $('#idSemana option:selected').attr('value');
+
+            if (txtNombre.trim() == "") {
+                NotificacionAvisoDerecha("INGRESE EL NOMBRE DE LA CLASE");
+                return;
+            }
+            if (slcSemana.trim() == 0) {
+                NotificacionAvisoDerecha("SELECCIONE EL NÚMERO DE SEMANA");
+                return;
+            }
+            if (txtRutaEnlace.trim() == "") {
+                NotificacionAvisoDerecha("INGRESE LA RUTA DEL ENLACE");
+                return;
+            }
+            if (txtRutaVideo.trim() == "") {
+                NotificacionAvisoDerecha("INGRESE LA RUTA DEL VIDEO");
+                return;
+            }
+            var paramidusuario = $('#hddidusuario').val();
+            $.ajax({
+                type: "POST",
+                url: '/Clase/InsertarClaseGestion',
+                data: {
+                    "idgrado": slcCurso,
+                    "isemana": slcSemana,
+                    "nombre": txtNombre,
+                    "descripcion": txtDescripcion,
+                    "rutaenlace": txtRutaEnlace,
+                    "rutavideo": txtRutaVideo,
+                    "categoria": 1,
+                    "imagen": "",
+                    "imagenruta": "",
+                    "orden": paramidusuario
+                },
+                async: false,
+                success: function (msg) {
+                    $('#modalClase').modal("hide");
+                    $('#modalSuccess').modal("show");
+                    GvalorIdCurso = 0;
+                    fn_listartabla(GvalorIdCurso);
+                },
+                error: function (msg) {
+                    console.log(msg);
+                    //location.reload();
+                },
+                complete: function (data) {
+                    // si acabo de completar
+                }
+            });
+
+        });
+
+        function MostrarResultado() {
+            NotificacionSuccessDerecha("Datos ingresados correctamente");
+            $('#modalArchivo').modal("hide");
+            GvalorIdCurso = parseInt($('#idCursog option:selected').attr('value'));
+            fn_listartabla(GvalorIdCurso);
+        }
+
+    </script>
+}

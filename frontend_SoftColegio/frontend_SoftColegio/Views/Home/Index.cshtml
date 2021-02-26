@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .content-page {
+        background-image: url(../../Content/img/cimg_fondo.png);
+        background-size: cover;
+    }
+
+    .rightbar-overlay { /* pantalla gris de carga */
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+</style>
+<br />
+<br />
+<br />
+<br />
+<div class="row justify-content-center text-center">
+    <div class="col-12">
+        <br />
+        <h1 class="upper-text">¡BIENVENIDO/A! 🧑🏻/👧🏻</h1>
+        <br />
+        <h1 class="upper-text">Hola @ViewBag.GNombreUsuario 😃</h1>
+        <br />
+        <h3 class="upper-text">📚 🖍Revisa las clases que tienes hoy </h3>
+        <br />
+        @*<h4 class="justify-content-center">Disfruta de los juegos agregados especialmente para ti</h4>*@
+    </div>
+</div>

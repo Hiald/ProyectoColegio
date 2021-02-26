@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                </div>
+                <h4 class="page-title">TAREA</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    @foreach (var @item in ViewBag.Lista)
+                    {
+                        <div class="form-group row mb-3">
+                            <label for="inputEmail3" class="col-3 col-form-label">@item.Simagen</label>
+                            <div class="col-3">
+                                <button onclick="rutaTarea('@item.Senlace.ToString()')" class="btn btn-primary">Enlace</button>
+                            </div>
+                            @if (@item.Itipoarchivo == 1)
+                            {
+                                <div class="col-3">
+                                    <a class="btn btn-info" target="_blank" href="@item.SenlaceAlumno">Abrir tarea</a>
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" onclick="TraerIdArchivo(@item.idarchivo)" class="btn btn-success">Subir Tarea</button>
+                                </div>
+                            }
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalSubirTarea" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Subir Tarea</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("InsertarArchivoAlumno", "archivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="hidden" value="" name="idarchivo" id="IdArchivo" />
+                    <input type="hidden" value="0" name="nota" />
+                    <input type="hidden" value="@ViewBag.Gidclase" name="gidclase" />
+                    <input type="hidden" value="" name="observacion" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="txtLinkTarea">Por favor ingresar un enlace (opcional)</label>
+                            <input type="text" id="txtLinkTarea" name="enlace" placeholder="Link de tarea..." class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txtarchivo">Archivo de la tarea</label>
+                                <input type="file" id="txtarchivo" name="imagen" class="form-control"
+                                       accept="application/msword, application/vnd.ms-powerpoint, text/plain
+                                                , application/pdf, image/*, application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                                 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="txtDescripcion">Descripción (opcional)</label>
+                            <textarea rows="4" id="txtDescripcion" name="descripcion"
+                                      placeholder="..." class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <button id="btnSubirTarea" type="submit" class="btn btn-success">Subir</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function rutaTarea(parametro1) {
+            window.open(parametro1, '_blank');
+        }
+
+        function TraerIdArchivo(parametro) {
+            $("#IdArchivo").val(parametro);
+
+            $.ajax({
+                type: "POST",
+                url: "/archivo/ListarArchivoAlumno",
+                data: {
+                    "idarchivo": parseInt(parametro),
+                },
+                success: function (data) {
+                    if (data.aaData.length == 0) {
+
+                    } else {
+                        NotificacionSuccessDerecha("Ya hay una tarea subida aquí");
+                    }
+
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+            $('#modalSubirTarea').modal("show");
+
+        }
+
+    </script>
+}

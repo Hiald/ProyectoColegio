@@ -1,0 +1,316 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body[data-leftbar-theme=dark] .side-nav .mm-active > a {
+        color: #1b1515 !important;
+    }
+
+    body[data-leftbar-theme=dark] .side-nav .side-nav-link {
+        color: #28313c !important;
+    }
+</style>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                </div>
+                <h4 class="page-title">CLASES</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">@ViewBag.Curso</h4>
+                    <ul class="nav nav-tabs nav-bordered mb-3">
+                        <li class="nav-item"></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="links-buttons-preview">
+                            <div class="list-group">
+                                @foreach (var @item in ViewBag.Lista)
+                                {
+                                    <div>
+                                        <div class="h-100" id="left-side-menu-container" data-simplebar>
+                                            <ul class="metismenu side-nav">
+                                                <li class="side-nav-item">
+                                                    <a href="javascript: void(0);" class="side-nav-link">
+                                                        <i class="mdi mdi-home-edit"></i>
+                                                        <span> SEMANA @item.Isemana : @item.Snombre </span>
+                                                        <span class="menu-arrow"></span>
+                                                    </a>
+                                                    <ul class="side-nav-second-level" aria-expanded="false">
+                                                        @*<li class="side-nav-item"></li>*@
+                                                        <br />
+                                                        <div class="row ml-3 mr-3">
+                                                            <div class="col-sm-3 mb-2 mb-sm-0">
+                                                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                                    <a class="nav-link active show" id="@("vclase-" + item.idclase + "-tab")" data-toggle="pill"
+                                                                       href="@("#vclase-" + item.idclase)" role="tab"
+                                                                       aria-controls="@("vclase-" + item.idclase)" aria-selected="true">
+                                                                        <span>
+                                                                            Clase&nbsp;<i class="mdi mdi-home-variant d-md-none"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                    <a class="nav-link" id="@("vtarea-" + item.idclase + "-tab")" data-toggle="pill"
+                                                                       href="@("#vtarea-" + item.idclase)" role="tab"
+                                                                       aria-controls="@("vtarea-" + item.idclase)" aria-selected="false"
+                                                                       onclick="javascript:fnArmarClase(@item.idclase, '#vtarea-@item.idclase');">
+                                                                        <span>
+                                                                            Tarea&nbsp;<i class="mdi mdi-account-circle d-md-none"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                    @*<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                                                                                    aria-selected="false">
+                                                                                    <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                                                                                    <span class="d-none d-md-block">Exámen</span>
+                                                                        </a>*@
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-9">
+                                                                <div class="tab-content" id="v-pills-tabContent">
+                                                                    <div class="tab-pane fade active show"
+                                                                         id="@("vclase-" + item.idclase)" role="tabpanel"
+                                                                         aria-labelledby="@("vclase-" + item.idclase + "-tab")">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 mb-3">
+                                                                                <label>Descripción de la clase</label>
+                                                                                <textarea class="form-control" rows="3">@item.Sdescripcion</textarea>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label>Enlace video</label>
+                                                                                <input class="form-control" type="text" value="@item.SrutaVideo" />
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label>Enlace</label>
+                                                                                <input class="form-control" type="text" value="@item.Srutaenlace" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <br />
+                                                                    </div>
+                                                                    <div class="tab-pane fade"
+                                                                         id="@("vtarea-" + item.idclase)" role="tabpanel"
+                                                                         aria-labelledby="@("vtarea-" + item.idclase + "-tab")">
+
+
+                                                                    </div>
+                                                                    @*<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                                                            <p class="mb-0">examenn</p>
+                                                                        </div>*@
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<input type="hidden" value="" id="Rutaenlace" />
+
+<input type="hidden" value="" id="IdClase" />
+
+<input type="hidden" value="@ViewBag.IdCurso" id="IdCurso" />
+
+<div id="modalClase" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <div class="text-center">
+                    <i class="dripicons-information h1 text-info"></i>
+                    <h4 class="mt-2">¿Qué deseas realizar?</h4>
+                    <button type="button" onclick="Iraclase()" class="btn btn-info my-2" data-dismiss="modal">Ir a la clase</button>
+                    <button type="button" onclick="IraTarea()" class="btn btn-light my-2" data-dismiss="modal">Referencias</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalSubirTarea" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Subir Tarea</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("InsertarArchivoAlumno", "archivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="hidden" value="@ViewBag.IdCurso" name="pidcurso" />
+                    <input type="hidden" value="@ViewBag.Curso" name="snombrecurso" />
+
+                    <input type="hidden" value="" name="idarchivo" id="IdArchivo" />
+                    <input type="hidden" value="0" name="nota" />
+                    <input type="hidden" value="" name="observacion" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="txtLinkTarea">Por favor ingresar un enlace (opcional)</label>
+                            <input type="text" id="txtLinkTarea" name="enlace" placeholder="Link de tarea..." class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="txtarchivo">Archivo de la tarea</label>
+                                <input type="file" id="txtarchivo" name="imagen" class="form-control"
+                                       accept="application/msword, application/vnd.ms-powerpoint, text/plain
+                                                , application/pdf, image/*, application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                                 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="txtDescripcion">Descripción (opcional)</label>
+                            <textarea rows="4" id="txtDescripcion" name="descripcion"
+                                      placeholder="..." class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <button id="btnSubirTarea" type="submit" class="btn btn-success">Subir</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            //fn_ListarClase();
+        });
+
+        function rutaClase(rutaEnlace, parametro2) {
+            //Me envia al modal
+            $("#Rutaenlace").val(rutaEnlace);
+            $("#IdClase").val(parametro2);
+        }
+
+        function IraTarea() {
+            var IdClase1 = $("#IdClase").val();
+            window.open("/Archivo/Tarea?idclase=" + IdClase1);
+        }
+
+        function fn_ListarClase() {
+            var idCurso = $("#IdCurso").val();
+            $.ajax({
+                type: "POST",
+                url: "/Clase/ListarClase",
+                data: {
+                    "idcurso": idCurso
+                },
+                async: false,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function Iraclase() {
+            var UrlRutaEnlace = $("#Rutaenlace").val();
+            window.open(UrlRutaEnlace, '_blank');
+        }
+
+        function fnArmarClase(idclase, valorparam) {
+
+            $.ajax({
+                type: 'POST',
+                url: '/Archivo/ListarArchivoEspecifico',
+                data: {
+                    "idclase": idclase
+                },
+                success: function (value) {
+                    $(valorparam).html("");
+
+                    $.each(value.aaData, function (index, val) {
+                        var valortiparchivo = "";
+
+                        if (val.Itipoarchivo == 1) {
+                            valortiparchivo = '<div class="col-md-6">'
+                                + '<a class="btn btn-info" target="_blank" href="' + val.SenlaceAlumno + '">Abrir tarea</a>'
+                                + '</div>'
+                                + '<div class="col-md-6">'
+                                + '<button type="button" onclick="TraerIdArchivo(' + val.idarchivo + ')" class="btn btn-success">Subir Tarea</button>'
+                                + '</div>';
+                        }
+                        var enlace = val.Senlace;
+                        $(valorparam).append('<div class="card">'
+                            + '<div class="card-body">'
+                            + '<div class="row">'
+
+                            + '<div class="col-md-12 mb-3">'
+                            + '<label class="col-3 col-form-label">' + val.Simagen + '</label>'
+                            + '<textarea class="form-control" rows="3">' + val.Sobservacion + '</textarea>'
+                            + '</div>'
+
+                            + '<div class="col-md-12 mb-3">'
+                            + '<a target="_blank" href="' + enlace + '" class="btn btn-primary">Enlace de la tarea</a>'
+                            + '</div>'
+
+                            + valortiparchivo
+
+                            + '</div>'
+                            + '</div>'
+                            + '</div>');
+
+                    });
+
+                },
+                error: function (value) {
+                    console.log(value);
+                }
+            });
+
+        }
+
+        function rutaTarea(parametro1) {
+            window.open(parametro1, '_blank');
+        }
+
+        function TraerIdArchivo(parametro) {
+            $("#IdArchivo").val(parametro);
+
+            $.ajax({
+                type: "POST",
+                url: "/archivo/ListarArchivoAlumno",
+                data: {
+                    "idarchivo": parseInt(parametro),
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.aaData.length == 0) {
+                    } else {
+                        NotificacionSuccessDerecha("Ya hay una tarea subida aquí");
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+            $('#modalSubirTarea').modal("show");
+        }
+
+    </script>
+}
+
