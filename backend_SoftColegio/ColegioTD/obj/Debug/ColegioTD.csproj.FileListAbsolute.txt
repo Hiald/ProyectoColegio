@@ -1,0 +1,14 @@
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioTD.dll.config
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioTD.dll
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioTD.pdb
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioAD.dll
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioED.dll
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\MySql.Data.dll
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioAD.pdb
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioAD.dll.config
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\bin\Debug\ColegioED.pdb
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\obj\Debug\ColegioTD.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\obj\Debug\ColegioTD.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\obj\Debug\ColegioTD.csproj.CopyComplete
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\obj\Debug\ColegioTD.dll
+C:\Users\jonat\Desktop\SoftwareColegio\softwareEscuela\backend_SoftColegio\ColegioTD\obj\Debug\ColegioTD.pdb
